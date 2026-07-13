@@ -105,7 +105,13 @@ export default function App() {
       <main id="main-content-anchor" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 space-y-16 relative">
         
         {/* Dynamic Countdown & Greeting Section */}
-        <div className="text-center md:text-left flex flex-col md:flex-row justify-between items-center md:items-start gap-8 bg-white border border-brand-border rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-sm">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center md:text-left flex flex-col md:flex-row justify-between items-center md:items-start gap-8 bg-white border border-brand-border rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-sm"
+        >
           {/* Subtle translucent pink overlay on left corner */}
           <div className="absolute top-0 left-0 w-44 h-44 bg-brand-pink/10 rounded-full filter blur-xl pointer-events-none" />
 
@@ -157,20 +163,33 @@ export default function App() {
               Get Enrolled <Heart className="h-3 w-3 fill-white" />
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Dynamic Logo banner matched from user's asset */}
-        <section className="bg-white border border-brand-border rounded-3xl p-6 sm:p-10 flex flex-col md:flex-row items-center gap-6 relative overflow-hidden shadow-sm" id="asset-banner">
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="bg-white border border-brand-border rounded-3xl p-6 sm:p-10 flex flex-col md:flex-row items-center gap-6 relative overflow-hidden shadow-sm"
+          id="asset-banner"
+        >
           <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-brand-teal/5 to-transparent pointer-events-none" />
           <InteractiveLogo size="md" withText={true} />
-        </section>
+        </motion.section>
 
         {/* Two-Column Core Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Side: Mission & Interactive Features Blueprint */}
           <div className="lg:col-span-7 space-y-8">
-            <div className="bg-white border border-brand-border rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="bg-white border border-brand-border rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm"
+            >
               <h3 className="text-xl sm:text-2xl font-serif font-bold text-brand-heading tracking-tight">Our Mission</h3>
               <p className="text-brand-text text-sm sm:text-base leading-relaxed">
                 Maternal health should not rely on periodic checks alone. Major clinical risks like preeclampsia or gestational anomalies develop silently between office visits. 
@@ -200,27 +219,61 @@ export default function App() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Interactive Features Module */}
-            <FeaturesPreview />
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <FeaturesPreview />
+            </motion.div>
 
             {/* FAQ Accordion Section */}
-            <FAQSection />
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+            >
+              <FAQSection />
+            </motion.div>
           </div>
 
           {/* Right Side: Signup Form, Spot Checker, Admin Transparency Console */}
-          <div className="lg:col-span-5 space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="lg:col-span-5 space-y-8"
+          >
             <WaitlistForm />
-          </div>
+          </motion.div>
 
         </div>
 
         {/* Clinical Leadership Team Section */}
-        <MeetTheTeam />
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7 }}
+        >
+          <MeetTheTeam />
+        </motion.div>
 
         {/* Social Proof Carousel, Milestones and Community Connections */}
-        <SocialProof />
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7 }}
+        >
+          <SocialProof />
+        </motion.div>
 
       </main>
 
