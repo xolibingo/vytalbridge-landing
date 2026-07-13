@@ -1,0 +1,6 @@
+{
+  "name": "Vytal Bridge Coming Soon",
+  "description": "A coming soon landing page for Vytal Bridge, bridging every mother to care that saves lives. Features early adopter waitlist signup, interactive features, social proof, and professional footer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
