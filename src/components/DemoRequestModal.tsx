@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X, Building2, User, Mail, Phone, MessageSquare, Calendar, CheckCircle2, ShieldAlert } from "lucide-react";
+import { addDemoRequest } from "../lib/db";
 
 interface DemoRequestModalProps {
   isOpen: boolean;
@@ -15,15 +16,24 @@ export default function DemoRequestModal({ isOpen, onClose }: DemoRequestModalPr
   const [notes, setNotes] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!clinicName || !contactName || !email || !phoneNumber) {
       setError("Please fill out all required clinical contact fields.");
       return;
     }
     setError("");
-    setSubmitted(true);
+    setIsSubmitting(true);
+    try {
+      await addDemoRequest(clinicName, contactName, email, phoneNumber, notes);
+      setSubmitted(true);
+    } catch (err: any) {
+      setError(err.message || "Failed to submit demo request.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {
@@ -55,14 +65,14 @@ export default function DemoRequestModal({ isOpen, onClose }: DemoRequestModalPr
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 15 }}
             transition={{ type: "spring", duration: 0.4 }}
-            className="bg-white border border-brand-border rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden relative z-10"
+            className="bg-brand-dark-card border border-brand-border rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden relative z-10"
             id="demo-modal-container"
           >
             {/* Atmospheric light pink glow in the top-right corner of the modal */}
             <div className="absolute top-0 right-0 w-48 h-48 bg-brand-pink/20 rounded-full filter blur-2xl pointer-events-none" />
 
             {/* Header */}
-            <div className="p-6 border-b border-brand-border/60 flex justify-between items-center bg-brand-light-pink/10 relative z-10">
+            <div className="p-6 border-b border-brand-border/60 flex justify-between items-center bg-brand-dark relative z-10">
               <div className="flex items-center gap-2.5">
                 <div className="p-2 bg-brand-pink/20 border border-brand-pink/40 text-brand-heading rounded-xl">
                   <Calendar className="h-5 w-5 text-brand-coral" />
@@ -90,8 +100,8 @@ export default function DemoRequestModal({ isOpen, onClose }: DemoRequestModalPr
                   </p>
 
                   {error && (
-                    <div className="bg-red-50 border border-red-200 text-red-700 p-3 rounded-xl text-xs flex items-center gap-2">
-                      <ShieldAlert className="h-4 w-4 text-red-600 flex-shrink-0" />
+                    <div className="bg-red-500/10 border border-red-500/20 text-red-400 p-3 rounded-xl text-xs flex items-center gap-2">
+                      <ShieldAlert className="h-4 w-4 text-red-400 flex-shrink-0" />
                       <span>{error}</span>
                     </div>
                   )}
@@ -191,9 +201,10 @@ export default function DemoRequestModal({ isOpen, onClose }: DemoRequestModalPr
                   <div className="pt-2">
                     <button
                       type="submit"
+                      disabled={isSubmitting}
                       className="w-full bg-brand-teal hover:bg-brand-teal/90 text-white text-xs font-semibold py-3 rounded-xl transition-all cursor-pointer shadow-md shadow-brand-teal/10 flex items-center justify-center gap-2"
                     >
-                      <span>Submit Request for Proposal & Demo</span>
+                      <span>{isSubmitting ? "Submitting Proposal..." : "Submit Request for Proposal & Demo"}</span>
                     </button>
                     <p className="text-[10px] text-brand-light-teal/80 text-center mt-3">
                       By submitting, you agree to our HIPAA institutional sandbox terms.
@@ -206,7 +217,7 @@ export default function DemoRequestModal({ isOpen, onClose }: DemoRequestModalPr
                   animate={{ scale: 1, opacity: 1 }}
                   className="text-center py-6 space-y-4"
                 >
-                  <div className="w-14 h-14 bg-emerald-50 text-emerald-600 border border-emerald-200 rounded-full flex items-center justify-center mx-auto shadow-sm">
+                  <div className="w-14 h-14 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full flex items-center justify-center mx-auto shadow-sm">
                     <CheckCircle2 className="h-7 w-7" />
                   </div>
                   <div className="space-y-2">
@@ -221,7 +232,7 @@ export default function DemoRequestModal({ isOpen, onClose }: DemoRequestModalPr
                   <div className="pt-4">
                     <button
                       onClick={handleReset}
-                      className="bg-brand-heading text-white px-6 py-2.5 rounded-xl text-xs font-semibold hover:bg-brand-heading/90 transition-all shadow-sm"
+                      className="bg-brand-dark border border-brand-border text-brand-heading px-6 py-2.5 rounded-xl text-xs font-semibold hover:bg-brand-dark/80 transition-all shadow-sm cursor-pointer"
                     >
                       Close Window
                     </button>

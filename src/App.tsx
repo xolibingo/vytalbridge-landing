@@ -1,17 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { Shield, Sparkles, Heart, Bell, Stethoscope, Mail, Phone, MapPin, ExternalLink, HelpCircle, Calendar } from "lucide-react";
+import { Shield, Sparkles, Heart, Bell, Stethoscope, Mail, Phone, MapPin, ExternalLink, HelpCircle, Calendar, Leaf, Activity, Eye, Settings } from "lucide-react";
 import InteractiveLogo from "./components/InteractiveLogo";
 import FeaturesPreview from "./components/FeaturesPreview";
 import WaitlistForm from "./components/WaitlistForm";
 import SocialProof from "./components/SocialProof";
 import FAQSection from "./components/FAQSection";
 import MeetTheTeam from "./components/MeetTheTeam";
+import MaternalInsights from "./components/MaternalInsights";
 import DemoRequestModal from "./components/DemoRequestModal";
 import BigLogoHero from "./components/BigLogoHero";
 import SupportChat from "./components/SupportChat";
+import ExitIntentPopup from "./components/ExitIntentPopup";
+import SettingsPanel from "./components/SettingsPanel";
+import { addSubscriber } from "./lib/db";
 
 export default function App() {
+  // Theme state for switching between Natural Tones & Clinical Dark
+  const [theme, setTheme] = useState<"natural" | "clinical-dark">(() => {
+    return (localStorage.getItem("vytal_theme") as "natural" | "clinical-dark") || "natural";
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("vytal_theme", theme);
+  }, [theme]);
+
+  // Accessibility state for increasing font-size and line-height for visual impairment
+  const [accessibilityMode, setAccessibilityMode] = useState<boolean>(() => {
+    return localStorage.getItem("vytal_accessibility") === "true";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("vytal_accessibility", String(accessibilityMode));
+  }, [accessibilityMode]);
+
+  // Settings Panel state
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
   // Demo Modal & Footer email states
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const [footerEmail, setFooterEmail] = useState("");
@@ -57,7 +83,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-dark text-brand-text font-sans selection:bg-brand-teal selection:text-white relative overflow-x-hidden">
+    <div className={`min-h-screen bg-brand-dark text-brand-text font-sans selection:bg-brand-teal selection:text-white relative overflow-x-hidden ${accessibilityMode ? "accessibility-active" : ""}`}>
       
       {/* Immersive background decoration */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[1200px] pointer-events-none overflow-hidden">
@@ -75,13 +101,28 @@ export default function App() {
             <span className="font-display font-bold text-brand-heading text-base sm:text-lg tracking-tight">Vytal Bridge</span>
           </div>
           
-          <div className="flex items-center gap-2.5 sm:gap-4">
+          <div className="flex items-center gap-2.5 sm:gap-4 relative">
+            {/* Elegant Settings & Navigation Panel Trigger */}
+            <button
+              id="settings-trigger-btn"
+              onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer border ${
+                isSettingsOpen
+                  ? "bg-brand-teal border-brand-teal text-white shadow-sm ring-2 ring-brand-teal/20"
+                  : "bg-brand-light-pink border-brand-border text-brand-light-teal hover:text-brand-heading hover:bg-brand-light-pink/80"
+              }`}
+              title="Open Control Settings & Navigation"
+            >
+              <Settings className={`h-4 w-4 ${isSettingsOpen ? "animate-spin" : ""}`} style={{ animationDuration: '6s' }} />
+              <span className="hidden sm:inline font-bold">Settings & Nav</span>
+            </button>
+
             <span className="hidden lg:inline-flex items-center gap-1 text-xs text-brand-teal bg-brand-accent-beige/40 px-2.5 py-1 rounded-md font-medium border border-brand-teal/20">
               <Shield className="h-3.5 w-3.5 text-brand-teal" /> HIPAA Compliant Architecture
             </span>
             <button
               onClick={() => setIsDemoModalOpen(true)}
-              className="border border-brand-pink/60 text-brand-heading hover:bg-brand-light-pink/50 bg-white/70 text-xs sm:text-sm font-semibold py-2 px-3 sm:px-4 rounded-xl transition-all cursor-pointer flex items-center gap-1.5 shadow-sm"
+              className="border border-brand-pink/60 text-brand-heading hover:bg-brand-light-pink/50 bg-brand-dark-card/70 text-xs sm:text-sm font-semibold py-2 px-3 sm:px-4 rounded-xl transition-all cursor-pointer flex items-center gap-1.5 shadow-sm"
               id="header-demo-cta"
             >
               <Calendar className="h-3.5 w-3.5 text-brand-coral" />
@@ -94,6 +135,16 @@ export default function App() {
             >
               Join Waitlist
             </button>
+
+            {/* Float Settings Panel */}
+            <SettingsPanel
+              isOpen={isSettingsOpen}
+              onClose={() => setIsSettingsOpen(false)}
+              theme={theme}
+              setTheme={setTheme}
+              accessibilityMode={accessibilityMode}
+              setAccessibilityMode={setAccessibilityMode}
+            />
           </div>
         </div>
       </header>
@@ -110,7 +161,7 @@ export default function App() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center md:text-left flex flex-col md:flex-row justify-between items-center md:items-start gap-8 bg-white border border-brand-border rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-sm"
+          className="text-center md:text-left flex flex-col md:flex-row justify-between items-center md:items-start gap-8 bg-brand-dark-card border border-brand-border rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-sm"
         >
           {/* Subtle translucent pink overlay on left corner */}
           <div className="absolute top-0 left-0 w-44 h-44 bg-brand-pink/10 rounded-full filter blur-xl pointer-events-none" />
@@ -132,25 +183,25 @@ export default function App() {
             <span className="text-[10px] text-brand-light-teal uppercase tracking-widest font-bold mb-3">Beta Launch (Oct 1, 2026) Countdown</span>
             <div className="grid grid-cols-4 gap-3 text-center">
               <div>
-                <div className="bg-white rounded-lg p-2.5 min-w-[50px] font-mono text-xl sm:text-2xl font-black text-brand-teal border border-brand-pink/20 shadow-sm">
+                <div className="bg-brand-dark-card rounded-lg p-2.5 min-w-[50px] font-mono text-xl sm:text-2xl font-black text-brand-teal border border-brand-pink/20 shadow-sm">
                   {timeLeft.days}
                 </div>
                 <span className="text-[9px] text-brand-light-teal uppercase mt-1 block font-semibold">Days</span>
               </div>
               <div>
-                <div className="bg-white rounded-lg p-2.5 min-w-[50px] font-mono text-xl sm:text-2xl font-black text-brand-teal border border-brand-pink/20 shadow-sm">
+                <div className="bg-brand-dark-card rounded-lg p-2.5 min-w-[50px] font-mono text-xl sm:text-2xl font-black text-brand-teal border border-brand-pink/20 shadow-sm">
                   {timeLeft.hours}
                 </div>
                 <span className="text-[9px] text-brand-light-teal uppercase mt-1 block font-semibold">Hours</span>
               </div>
               <div>
-                <div className="bg-white rounded-lg p-2.5 min-w-[50px] font-mono text-xl sm:text-2xl font-black text-brand-teal border border-brand-pink/20 shadow-sm">
+                <div className="bg-brand-dark-card rounded-lg p-2.5 min-w-[50px] font-mono text-xl sm:text-2xl font-black text-brand-teal border border-brand-pink/20 shadow-sm">
                   {timeLeft.minutes}
                 </div>
                 <span className="text-[9px] text-brand-light-teal uppercase mt-1 block font-semibold">Mins</span>
               </div>
               <div>
-                <div className="bg-white rounded-lg p-2.5 min-w-[50px] font-mono text-xl sm:text-2xl font-black text-brand-teal border border-brand-pink/20 shadow-sm">
+                <div className="bg-brand-dark-card rounded-lg p-2.5 min-w-[50px] font-mono text-xl sm:text-2xl font-black text-brand-teal border border-brand-pink/20 shadow-sm">
                   {timeLeft.seconds}
                 </div>
                 <span className="text-[9px] text-brand-light-teal uppercase mt-1 block font-semibold">Secs</span>
@@ -171,7 +222,7 @@ export default function App() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="bg-white border border-brand-border rounded-3xl p-6 sm:p-10 flex flex-col md:flex-row items-center gap-6 relative overflow-hidden shadow-sm"
+          className="bg-brand-dark-card border border-brand-border rounded-3xl p-6 sm:p-10 flex flex-col md:flex-row items-center gap-6 relative overflow-hidden shadow-sm"
           id="asset-banner"
         >
           <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-brand-teal/5 to-transparent pointer-events-none" />
@@ -184,11 +235,12 @@ export default function App() {
           {/* Left Side: Mission & Interactive Features Blueprint */}
           <div className="lg:col-span-7 space-y-8">
             <motion.div
+              id="mission-section"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
-              className="bg-white border border-brand-border rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm"
+              className="bg-brand-dark-card border border-brand-border rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm"
             >
               <h3 className="text-xl sm:text-2xl font-serif font-bold text-brand-heading tracking-tight">Our Mission</h3>
               <p className="text-brand-text text-sm sm:text-base leading-relaxed">
@@ -233,6 +285,7 @@ export default function App() {
 
             {/* FAQ Accordion Section */}
             <motion.div
+              id="faq-section"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -254,6 +307,16 @@ export default function App() {
           </motion.div>
 
         </div>
+
+        {/* Maternal Health Insights Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7 }}
+        >
+          <MaternalInsights />
+        </motion.div>
 
         {/* Clinical Leadership Team Section */}
         <motion.div
@@ -278,7 +341,7 @@ export default function App() {
       </main>
 
       {/* Professional Legal Footer & Contacts */}
-      <footer className="border-t border-brand-border bg-white py-12 mt-16 text-xs text-brand-light-teal">
+      <footer className="border-t border-brand-border bg-brand-dark-card py-12 mt-16 text-xs text-brand-light-teal">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           
           {/* Grid Layout - Balanced 4 Columns */}
@@ -309,9 +372,16 @@ export default function App() {
               </p>
               {!footerSubscribed ? (
                 <form
-                  onSubmit={(e) => {
+                  onSubmit={async (e) => {
                     e.preventDefault();
-                    if (footerEmail.trim()) setFooterSubscribed(true);
+                    if (footerEmail.trim()) {
+                      try {
+                        await addSubscriber(footerEmail);
+                        setFooterSubscribed(true);
+                      } catch (err) {
+                        console.error("Failed to subscribe:", err);
+                      }
+                    }
                   }}
                   className="space-y-2"
                 >
@@ -408,6 +478,9 @@ export default function App() {
 
       {/* Floating Clinical Support Chat Interface */}
       <SupportChat />
+
+      {/* Non-intrusive Exit-Intent resource offer popup */}
+      <ExitIntentPopup />
 
     </div>
   );

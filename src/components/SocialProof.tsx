@@ -78,7 +78,7 @@ export default function SocialProof() {
   return (
     <div className="space-y-12" id="social-proof-section">
       {/* Clinician Advisory & Testimonials Banner */}
-      <div className="bg-white border border-brand-border rounded-3xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
+      <div className="bg-brand-dark-card border border-brand-border rounded-3xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
         <div className="absolute top-0 left-0 w-32 h-32 bg-brand-teal/5 rounded-full filter blur-2xl pointer-events-none" />
         <Quote className="absolute top-6 right-8 h-20 w-20 text-brand-accent-beige/20 rotate-12 pointer-events-none" />
 
@@ -147,14 +147,14 @@ export default function SocialProof() {
               <div className="flex gap-2">
                 <button
                   onClick={prevTestimonial}
-                  className="p-1.5 rounded-lg bg-[#FAF9F6] border border-brand-border text-brand-light-teal hover:text-brand-teal transition-all cursor-pointer"
+                  className="p-1.5 rounded-lg bg-brand-dark border border-brand-border text-brand-light-teal hover:text-brand-teal transition-all cursor-pointer"
                   aria-label="Previous Testimonial"
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </button>
                 <button
                   onClick={nextTestimonial}
-                  className="p-1.5 rounded-lg bg-[#FAF9F6] border border-brand-border text-brand-light-teal hover:text-brand-teal transition-all cursor-pointer"
+                  className="p-1.5 rounded-lg bg-brand-dark border border-brand-border text-brand-light-teal hover:text-brand-teal transition-all cursor-pointer"
                   aria-label="Next Testimonial"
                 >
                   <ChevronRight className="h-4 w-4" />
@@ -182,10 +182,10 @@ export default function SocialProof() {
               key={idx}
               className={`p-5 rounded-2xl border transition-all relative ${
                 milestone.status === "active"
-                  ? "bg-white border-brand-teal ring-1 ring-brand-teal/20 shadow-md"
+                  ? "bg-brand-dark-card border-brand-teal ring-1 ring-brand-teal/20 shadow-md"
                   : milestone.status === "completed"
-                  ? "bg-white border-brand-border shadow-sm opacity-90"
-                  : "bg-[#FAF9F6]/40 border-brand-border opacity-70"
+                  ? "bg-brand-dark-card border-brand-border shadow-sm opacity-90"
+                  : "bg-brand-dark/40 border-brand-border opacity-70"
               }`}
             >
               <div className="flex justify-between items-center mb-3">
@@ -197,7 +197,7 @@ export default function SocialProof() {
                   <span className="bg-brand-coral/15 text-brand-coral px-2 py-0.5 rounded text-[10px] font-semibold animate-pulse border border-brand-coral/10">Enrolling</span>
                 )}
                 {milestone.status === "upcoming" && (
-                  <span className="bg-[#FAF9F6] text-brand-light-teal px-2 py-0.5 rounded text-[10px] font-semibold border border-brand-border">Pending</span>
+                  <span className="bg-brand-dark text-brand-light-teal px-2 py-0.5 rounded text-[10px] font-semibold border border-brand-border">Pending</span>
                 )}
               </div>
               <h4 className="text-sm font-semibold text-brand-heading tracking-tight leading-snug">{milestone.title}</h4>
@@ -208,7 +208,7 @@ export default function SocialProof() {
       </div>
 
       {/* Social Profiles & Share Node */}
-      <div className="bg-white border border-brand-border rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row justify-between items-center gap-6 shadow-sm" id="social-connectivity-card">
+      <div className="bg-brand-dark-card border border-brand-border rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row justify-between items-center gap-6 shadow-sm" id="social-connectivity-card">
         <div className="space-y-1.5 text-center md:text-left">
           <h3 className="text-lg font-serif font-bold text-brand-heading">Join the Vytal Core Community</h3>
           <p className="text-xs text-brand-text max-w-md">
@@ -222,7 +222,7 @@ export default function SocialProof() {
             href="https://twitter.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="h-10 w-10 rounded-xl bg-[#FAF9F6] hover:bg-[#FAF9F6]/80 text-brand-text flex items-center justify-center transition-all border border-brand-border group"
+            className="h-10 w-10 rounded-xl bg-brand-dark hover:bg-brand-dark/80 text-brand-text flex items-center justify-center transition-all border border-brand-border group"
             title="Follow us on Twitter"
             id="twitter-social-link"
           >
@@ -234,7 +234,7 @@ export default function SocialProof() {
             href="https://linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="h-10 w-10 rounded-xl bg-[#FAF9F6] hover:bg-[#FAF9F6]/80 text-brand-text flex items-center justify-center transition-all border border-brand-border group"
+            className="h-10 w-10 rounded-xl bg-brand-dark hover:bg-brand-dark/80 text-brand-text flex items-center justify-center transition-all border border-brand-border group"
             title="Connect on LinkedIn"
             id="linkedin-social-link"
           >
@@ -246,7 +246,7 @@ export default function SocialProof() {
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="h-10 w-10 rounded-xl bg-[#FAF9F6] hover:bg-[#FAF9F6]/80 text-brand-text flex items-center justify-center transition-all border border-brand-border group"
+            className="h-10 w-10 rounded-xl bg-brand-dark hover:bg-brand-dark/80 text-brand-text flex items-center justify-center transition-all border border-brand-border group"
             title="Follow on Instagram"
             id="instagram-social-link"
           >
@@ -258,7 +258,7 @@ export default function SocialProof() {
             href="https://substack.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="h-10 w-10 rounded-xl bg-[#FAF9F6] hover:bg-[#FAF9F6]/80 text-brand-text flex items-center justify-center transition-all border border-brand-border group"
+            className="h-10 w-10 rounded-xl bg-brand-dark hover:bg-brand-dark/80 text-brand-text flex items-center justify-center transition-all border border-brand-border group"
             title="Read our Substack Publication"
             id="substack-social-link"
           >

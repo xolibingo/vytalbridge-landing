@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Target-permit operations on active application collections
+    
+    match /waitlist/{document} {
+      allow read, write: if true;
+    }
+
+    match /subscribers/{document} {
+      allow read, write: if true;
+    }
+
+    match /sent_emails/{document} {
+      allow read, write: if true;
+    }
+
+    match /users/{document} {
+      allow read, write: if true;
+    }
+
+    match /demo_requests/{document} {
+      allow read, write: if true;
+    }
+    
+    // Default deny catch-all for all other paths to prevent database scanning
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

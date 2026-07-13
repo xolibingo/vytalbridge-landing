@@ -50,7 +50,7 @@ export default function FAQSection() {
   };
 
   return (
-    <div className="bg-white border border-brand-border rounded-3xl p-6 sm:p-10 shadow-sm relative overflow-hidden space-y-8" id="faq-section">
+    <div className="bg-brand-dark-card border border-brand-border rounded-3xl p-6 sm:p-10 shadow-sm relative overflow-hidden space-y-8" id="faq-section">
       {/* Soft translucent pink atmospheric background glow to add warmth */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-brand-pink/15 rounded-full filter blur-[80px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-light-pink/20 rounded-full filter blur-[100px] pointer-events-none" />
@@ -78,7 +78,7 @@ export default function FAQSection() {
               className={`border rounded-2xl transition-all duration-300 ${
                 isOpen
                   ? "border-brand-pink bg-brand-light-pink/40 shadow-sm"
-                  : "border-brand-border bg-white hover:bg-brand-light-pink/10"
+                  : "border-brand-border bg-brand-dark-card hover:bg-brand-light-pink/10"
               }`}
               id={`faq-item-${idx}`}
             >
@@ -89,7 +89,7 @@ export default function FAQSection() {
               >
                 <div className="flex gap-4">
                   <div className={`p-2.5 rounded-xl flex-shrink-0 transition-colors ${
-                    isOpen ? "bg-white border border-brand-pink/40 text-brand-coral" : "bg-brand-dark border border-brand-border text-brand-light-teal"
+                    isOpen ? "bg-brand-dark border border-brand-pink/40 text-brand-coral" : "bg-brand-dark border border-brand-border text-brand-light-teal"
                   }`}>
                     {faq.icon}
                   </div>
@@ -119,7 +119,7 @@ export default function FAQSection() {
                     className="overflow-hidden"
                   >
                     <div className="px-5 sm:px-6 pb-6 pt-1 text-sm text-brand-text leading-relaxed border-t border-brand-border/40 pl-5 sm:pl-16">
-                      <p className="bg-white/50 p-4 rounded-xl border border-brand-border/30">
+                      <p className="bg-brand-dark/50 p-4 rounded-xl border border-brand-border/30">
                         {faq.answer}
                       </p>
                     </div>

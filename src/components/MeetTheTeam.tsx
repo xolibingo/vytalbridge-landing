@@ -18,7 +18,7 @@ export default function MeetTheTeam() {
   ];
 
   return (
-    <div className="bg-white border border-brand-border rounded-3xl p-6 sm:p-10 shadow-sm relative overflow-hidden space-y-10" id="meet-the-team-section">
+    <div className="bg-brand-dark-card border border-brand-border rounded-3xl p-6 sm:p-10 shadow-sm relative overflow-hidden space-y-10" id="meet-the-team-section">
       {/* Decorative gradient blur with custom soft pink and warm beige */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-pink/15 rounded-full filter blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-100px] right-[-50px] w-64 h-64 bg-brand-light-pink/35 rounded-full filter blur-[80px] pointer-events-none" />
@@ -44,12 +44,12 @@ export default function MeetTheTeam() {
           {visuals.map((member, idx) => (
             <div 
               key={idx}
-              className="border border-brand-border/60 hover:border-brand-pink/60 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-md group bg-white"
+              className="border border-brand-border/60 hover:border-brand-pink/60 rounded-2xl p-5 flex flex-col justify-between transition-all duration-300 hover:shadow-md group bg-brand-dark-card"
               id={`team-member-${idx}`}
             >
               <div className="space-y-4">
                 {/* Image & Icon Frame */}
-                <div className="relative h-64 w-full rounded-xl overflow-hidden bg-brand-light-pink border border-brand-border">
+                <div className="relative h-64 w-full rounded-xl overflow-hidden bg-brand-dark border border-brand-border">
                   <img 
                     src={member.image} 
                     alt={member.specialty} 
@@ -57,7 +57,7 @@ export default function MeetTheTeam() {
                     referrerPolicy="no-referrer"
                   />
                   {/* Translucent overlay pink corner */}
-                  <div className="absolute bottom-2 right-2 bg-white/95 backdrop-blur-sm p-2 rounded-lg border border-brand-pink/30 shadow-sm flex items-center gap-1.5">
+                  <div className="absolute bottom-2 right-2 bg-brand-dark-card/95 backdrop-blur-sm p-2 rounded-lg border border-brand-pink/30 shadow-sm flex items-center gap-1.5">
                     {member.icon}
                     <span className="text-[10px] font-bold text-brand-heading uppercase tracking-wide">{member.specialty}</span>
                   </div>
@@ -82,7 +82,7 @@ export default function MeetTheTeam() {
         </div>
 
         {/* Baby Focus Banner Column (4 Cols on large screens) */}
-        <div className="lg:col-span-4 bg-brand-light-pink/40 border border-brand-pink/30 rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden shadow-sm">
+        <div className="lg:col-span-4 bg-brand-dark/40 border border-brand-pink/30 rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden shadow-sm">
           {/* Subtle translucent pink background patterns */}
           <div className="absolute -top-12 -right-12 w-32 h-32 bg-brand-pink/20 rounded-full filter blur-2xl pointer-events-none" />
           
@@ -90,7 +90,7 @@ export default function MeetTheTeam() {
             <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-brand-pink text-brand-heading uppercase tracking-widest">
               Infant Safety Focus
             </span>
-            <div className="relative h-48 w-full rounded-xl overflow-hidden border border-brand-pink/40 bg-white">
+            <div className="relative h-48 w-full rounded-xl overflow-hidden border border-brand-pink/40 bg-brand-dark-card">
               <img 
                 src="/assets/images/newborn_baby_pink_1783952552875.jpg" 
                 alt="Newborn Baby Care" 

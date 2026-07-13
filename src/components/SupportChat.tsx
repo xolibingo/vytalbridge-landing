@@ -78,14 +78,14 @@ export default function SupportChat() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.92 }}
             transition={{ type: "spring", damping: 20 }}
-            className="w-80 sm:w-96 h-[480px] bg-white border border-brand-border rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-4 relative"
+            className="w-80 sm:w-96 h-[480px] bg-brand-dark-card border border-brand-border rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-4 relative"
             id="support-chat-window"
           >
             {/* Atmospheric pink glow */}
             <div className="absolute -top-12 -right-12 w-32 h-32 bg-brand-pink/20 rounded-full filter blur-2xl pointer-events-none" />
 
             {/* Chat Header */}
-            <div className="p-4 bg-brand-light-pink/40 border-b border-brand-border flex items-center justify-between relative z-10">
+            <div className="p-4 bg-brand-dark border-b border-brand-border flex items-center justify-between relative z-10">
               <div className="flex items-center gap-2.5">
                 <div className="relative">
                   <div className="h-10 w-10 rounded-xl bg-brand-teal flex items-center justify-center text-white">
@@ -107,7 +107,7 @@ export default function SupportChat() {
             </div>
 
             {/* Chat Area */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#FAF9F6]/30 relative z-10 text-xs">
+            <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-brand-dark/30 relative z-10 text-xs">
               
               {/* Eswatini Office Notice Badge */}
               <div className="bg-brand-pink/15 border border-brand-pink/30 p-2.5 rounded-xl space-y-1 text-[10px] text-brand-heading">
@@ -128,7 +128,7 @@ export default function SupportChat() {
                   <div className={`max-w-[80%] rounded-2xl p-3 shadow-sm ${
                     msg.sender === "user"
                       ? "bg-brand-teal text-white rounded-tr-none"
-                      : "bg-white border border-brand-border text-brand-heading rounded-tl-none"
+                      : "bg-brand-dark-card border border-brand-border text-brand-heading rounded-tl-none"
                   }`}>
                     <p className="leading-relaxed whitespace-pre-wrap">{msg.text}</p>
                     <span className={`text-[8px] mt-1 block text-right ${
@@ -140,7 +140,7 @@ export default function SupportChat() {
 
               {isTyping && (
                 <div className="flex justify-start">
-                  <div className="bg-white border border-brand-border rounded-2xl rounded-tl-none p-3 max-w-[80%] shadow-sm">
+                  <div className="bg-brand-dark-card border border-brand-border rounded-2xl rounded-tl-none p-3 max-w-[80%] shadow-sm">
                     <div className="flex gap-1 items-center">
                       <span className="w-1.5 h-1.5 bg-brand-light-teal rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
                       <span className="w-1.5 h-1.5 bg-brand-light-teal rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
@@ -154,7 +154,7 @@ export default function SupportChat() {
 
             {/* Quick Presets */}
             {messages.length === 1 && (
-              <div className="p-3 bg-white border-t border-brand-border space-y-1.5 z-10">
+              <div className="p-3 bg-brand-dark-card border-t border-brand-border space-y-1.5 z-10">
                 <span className="text-[9px] text-brand-light-teal uppercase font-bold tracking-wider block">Suggested Questions</span>
                 <div className="flex flex-col gap-1">
                   {presets.map((p, idx) => (
@@ -176,7 +176,7 @@ export default function SupportChat() {
                 e.preventDefault();
                 handleSend(input);
               }}
-              className="p-3 bg-white border-t border-brand-border flex gap-2 items-center relative z-10"
+              className="p-3 bg-brand-dark-card border-t border-brand-border flex gap-2 items-center relative z-10"
             >
               <input
                 type="text"

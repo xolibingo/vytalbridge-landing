@@ -3,6 +3,29 @@ import { motion, AnimatePresence } from "motion/react";
 import { HeartPulse, ShieldAlert, Activity, Sparkles, CheckCircle2, UserPlus, FileHeart, RefreshCw } from "lucide-react";
 import { FeatureDetail } from "../types";
 
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+    }
+  }
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      damping: 22,
+      stiffness: 110,
+    }
+  }
+};
+
 export default function FeaturesPreview() {
   const [activeTab, setActiveTab] = useState<string>("monitoring");
 
@@ -63,7 +86,7 @@ export default function FeaturesPreview() {
   };
 
   return (
-    <div className="bg-white border border-brand-border rounded-3xl p-6 sm:p-10 shadow-sm relative overflow-hidden" id="features-preview-section">
+    <div className="bg-brand-dark-card border border-brand-border rounded-3xl p-6 sm:p-10 shadow-sm relative overflow-hidden" id="features-preview-section">
       <div className="absolute top-0 right-0 w-64 h-64 bg-brand-teal/5 rounded-full filter blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-coral/5 rounded-full filter blur-3xl pointer-events-none" />
 
@@ -81,23 +104,30 @@ export default function FeaturesPreview() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         {/* Navigation Tabs (Left 5 columns on Desktop) */}
-        <div className="lg:col-span-5 space-y-3">
+        <motion.div 
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="lg:col-span-5 space-y-3"
+        >
           {features.map((feature) => {
             const isActive = feature.id === activeTab;
             return (
-              <button
+              <motion.button
                 key={feature.id}
+                variants={staggerItem}
                 onClick={() => setActiveTab(feature.id)}
                 className={`w-full text-left p-4 rounded-2xl flex items-center gap-4 transition-all duration-300 border ${
                   isActive
-                    ? "bg-[#FAF9F6] border-brand-teal shadow-md shadow-brand-teal/5 text-brand-heading"
-                    : "bg-[#FAF9F6]/60 hover:bg-[#FAF9F6] border-brand-border text-brand-light-teal hover:text-brand-teal"
+                    ? "bg-brand-dark border-brand-teal shadow-md shadow-brand-teal/5 text-brand-heading"
+                    : "bg-brand-dark/60 hover:bg-brand-dark border-brand-border text-brand-light-teal hover:text-brand-teal"
                 }`}
                 id={`feature-tab-${feature.id}`}
               >
                 <div
                   className={`p-3 rounded-xl transition-all ${
-                    isActive ? "bg-brand-teal text-white font-semibold" : "bg-white text-brand-light-teal border border-brand-border"
+                    isActive ? "bg-brand-teal text-white font-semibold" : "bg-brand-dark-card text-brand-light-teal border border-brand-border"
                   }`}
                 >
                   {renderIcon(feature.iconName, "h-6 w-6")}
@@ -110,13 +140,13 @@ export default function FeaturesPreview() {
                     {feature.badge}
                   </p>
                 </div>
-              </button>
+              </motion.button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Dynamic Display (Right 7 columns on Desktop) */}
-        <div className="lg:col-span-7 bg-[#FAF9F6] border border-brand-border rounded-2xl p-6 sm:p-8 h-[360px] flex flex-col justify-between relative overflow-hidden shadow-inner">
+        <div className="lg:col-span-7 bg-brand-dark border border-brand-border rounded-2xl p-6 sm:p-8 h-[360px] flex flex-col justify-between relative overflow-hidden shadow-inner">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -140,7 +170,7 @@ export default function FeaturesPreview() {
               </div>
 
               {/* Dynamic CSS Visual Mockup of App Screen */}
-              <div className="mt-6 flex-1 bg-white rounded-xl border border-brand-border p-4 flex flex-col justify-between relative overflow-hidden min-h-[140px] shadow-sm">
+              <div className="mt-6 flex-1 bg-brand-dark-card rounded-xl border border-brand-border p-4 flex flex-col justify-between relative overflow-hidden min-h-[140px] shadow-sm">
                 {currentFeature.visualMockup === "monitoring" && (
                   <div className="space-y-3" id="mockup-monitoring">
                     <div className="flex justify-between items-center text-xs text-brand-light-teal border-b border-brand-border pb-2">
@@ -148,14 +178,14 @@ export default function FeaturesPreview() {
                       <span className="text-brand-teal font-semibold">98% Signal Quality</span>
                     </div>
                     <div className="grid grid-cols-2 gap-3">
-                      <div className="bg-[#FAF9F6] p-2.5 rounded-lg border border-brand-border">
+                      <div className="bg-brand-dark p-2.5 rounded-lg border border-brand-border">
                         <span className="text-[10px] text-brand-light-teal uppercase font-semibold">Baby Heartbeat</span>
                         <div className="flex items-baseline gap-1 mt-1 text-brand-heading">
                           <span className="text-lg font-bold font-mono">142</span>
                           <span className="text-[10px] text-brand-light-teal">BPM</span>
                         </div>
                       </div>
-                      <div className="bg-[#FAF9F6] p-2.5 rounded-lg border border-brand-border">
+                      <div className="bg-brand-dark p-2.5 rounded-lg border border-brand-border">
                         <span className="text-[10px] text-brand-light-teal uppercase font-semibold">Maternal BP</span>
                         <div className="flex items-baseline gap-1 mt-1 text-brand-heading">
                           <span className="text-lg font-bold font-mono">118/76</span>
@@ -185,7 +215,7 @@ export default function FeaturesPreview() {
                         <p className="text-brand-text text-[11px]">Systolic blood pressure exceeded safe target. Secure telemetry routed instantly to Dr. Sarah Jenkins.</p>
                       </div>
                     </div>
-                    <div className="flex items-center justify-between text-[11px] text-brand-light-teal px-1 bg-[#FAF9F6] p-1.5 rounded-md border border-brand-border">
+                    <div className="flex items-center justify-between text-[11px] text-brand-light-teal px-1 bg-brand-dark p-1.5 rounded-md border border-brand-border">
                       <span>Routing Status:</span>
                       <span className="text-emerald-700 font-semibold flex items-center gap-1"><CheckCircle2 className="h-3 w-3" /> Transmitted</span>
                     </div>
@@ -203,7 +233,7 @@ export default function FeaturesPreview() {
                         <span className="text-brand-light-teal">Current Phase:</span>
                         <span className="text-brand-teal font-semibold">Active Labor Transition</span>
                       </div>
-                      <div className="w-full bg-[#FAF9F6] border border-brand-border h-2.5 rounded-full overflow-hidden">
+                      <div className="w-full bg-brand-dark border border-brand-border h-2.5 rounded-full overflow-hidden">
                         <div className="bg-brand-teal h-full w-4/6" />
                       </div>
                       <p className="text-[10px] text-brand-coral leading-tight bg-brand-coral/5 p-1.5 rounded border border-brand-coral/10">

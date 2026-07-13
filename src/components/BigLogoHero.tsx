@@ -12,7 +12,7 @@ export default function BigLogoHero() {
   };
 
   return (
-    <div className="relative min-h-[92vh] flex flex-col justify-center items-center overflow-hidden bg-[#FAF9F6] border-b border-brand-border px-4 py-12 md:py-20" id="big-logo-entrance-hero">
+    <div className="relative min-h-[92vh] flex flex-col justify-center items-center overflow-hidden bg-brand-dark border-b border-brand-border px-4 py-12 md:py-20" id="big-logo-entrance-hero">
       
       {/* Immersive artistic glowing backdrops utilizing light shades of translucent pink and teal */}
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-brand-pink/20 rounded-full filter blur-[100px] pointer-events-none" />
@@ -23,7 +23,7 @@ export default function BigLogoHero() {
       
       {/* Sparkle 1 */}
       <motion.div
-        className="absolute top-[15%] left-[10%] md:left-[15%] p-3 bg-white rounded-2xl border border-brand-pink/40 text-brand-coral shadow-md hidden sm:block"
+        className="absolute top-[15%] left-[10%] md:left-[15%] p-3 bg-brand-dark-card rounded-2xl border border-brand-pink/40 text-brand-coral shadow-md hidden sm:block"
         animate={{ y: [0, -12, 0], rotate: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
       >
@@ -32,7 +32,7 @@ export default function BigLogoHero() {
 
       {/* Heart 1 */}
       <motion.div
-        className="absolute bottom-[20%] left-[8%] md:left-[12%] p-3.5 bg-white rounded-2xl border border-brand-pink/50 text-brand-coral shadow-lg hidden sm:block"
+        className="absolute bottom-[20%] left-[8%] md:left-[12%] p-3.5 bg-brand-dark-card rounded-2xl border border-brand-pink/50 text-brand-coral shadow-lg hidden sm:block"
         animate={{ y: [0, 15, 0], scale: [1, 1.05, 1] }}
         transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
       >
@@ -41,7 +41,7 @@ export default function BigLogoHero() {
 
       {/* Stethoscope */}
       <motion.div
-        className="absolute top-[20%] right-[8%] md:right-[15%] p-3.5 bg-white rounded-2xl border border-brand-border text-brand-teal shadow-md hidden sm:block"
+        className="absolute top-[20%] right-[8%] md:right-[15%] p-3.5 bg-brand-dark-card rounded-2xl border border-brand-border text-brand-teal shadow-md hidden sm:block"
         animate={{ y: [0, -15, 0], rotate: [0, -8, 0] }}
         transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 0.5 }}
       >
@@ -50,7 +50,7 @@ export default function BigLogoHero() {
 
       {/* Baby icon wrapping in light pink */}
       <motion.div
-        className="absolute bottom-[25%] right-[10%] md:right-[14%] p-3.5 bg-brand-light-pink border border-brand-pink text-brand-heading shadow-md hidden sm:block"
+        className="absolute bottom-[25%] right-[10%] md:right-[14%] p-3.5 bg-brand-dark-card border border-brand-pink text-brand-heading shadow-md hidden sm:block"
         animate={{ y: [0, 10, 0], scale: [1, 1.08, 1] }}
         transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut", delay: 1 }}
       >
@@ -98,7 +98,7 @@ export default function BigLogoHero() {
           id="big-screen-logo-frame"
         >
           {/* Bezel / Sleek Display Glass Frame */}
-          <div className="bg-white border-4 border-brand-heading rounded-[40px] shadow-2xl p-6 sm:p-12 relative overflow-hidden backdrop-blur-md">
+          <div className="bg-brand-dark-card border-4 border-brand-heading rounded-[40px] shadow-2xl p-6 sm:p-12 relative overflow-hidden backdrop-blur-md">
             
             {/* Top Device bar indicator */}
             <div className="absolute top-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5">
@@ -108,7 +108,7 @@ export default function BigLogoHero() {
             </div>
 
             {/* Ambient inner soft light-pink display glow */}
-            <div className="absolute inset-0 bg-gradient-to-b from-brand-light-pink/20 via-white to-[#FAF9F6]/20 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-brand-light-pink/20 via-brand-dark-card to-brand-dark/20 pointer-events-none" />
 
             {/* Glowing background circles within screen */}
             <div className="absolute -top-10 -left-10 w-32 h-32 bg-brand-pink/15 rounded-full filter blur-xl" />
@@ -160,7 +160,7 @@ export default function BigLogoHero() {
             <ArrowDown className="h-4 w-4 animate-bounce" />
           </button>
           
-          <div className="flex items-center gap-1.5 text-xs text-brand-light-teal font-medium bg-white border border-brand-border px-4 py-3 rounded-2xl shadow-sm">
+          <div className="flex items-center gap-1.5 text-xs text-brand-light-teal font-medium bg-brand-dark-card border border-brand-border px-4 py-3 rounded-2xl shadow-sm">
             <Zap className="h-3.5 w-3.5 text-brand-coral fill-brand-coral" />
             <span>Closed Beta Enrolling October 1, 2026</span>
           </div>
