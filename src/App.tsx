@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { Shield, Sparkles, Heart, Bell, Stethoscope, Mail, Phone, MapPin, ExternalLink, HelpCircle, Calendar, Leaf, Activity, Eye, Settings } from "lucide-react";
+import { Shield, Sparkles, Heart, Bell, Stethoscope, Mail, Phone, MapPin, ExternalLink, HelpCircle, Calendar, Leaf, Activity, Eye, Settings, Download } from "lucide-react";
 import InteractiveLogo from "./components/InteractiveLogo";
 import FeaturesPreview from "./components/FeaturesPreview";
 import WaitlistForm from "./components/WaitlistForm";
@@ -406,11 +406,22 @@ export default function App() {
                   </p>
                 </form>
               ) : (
-                <div className="bg-brand-light-pink/40 border border-brand-pink/30 p-2.5 rounded-xl text-[10px] text-brand-heading space-y-1">
-                  <p className="font-semibold text-brand-coral">✓ Subscription Secured</p>
-                  <p className="text-[9px] text-brand-light-teal leading-tight">
-                    Added <span className="font-mono text-[9px] font-bold">{footerEmail}</span> to our clinical dispatch database.
-                  </p>
+                <div className="bg-brand-light-pink/40 border border-brand-pink/30 p-2.5 rounded-xl text-[10px] text-brand-heading space-y-2">
+                  <div>
+                    <p className="font-semibold text-brand-coral">✓ Subscription Secured</p>
+                    <p className="text-[9px] text-brand-light-teal leading-tight">
+                      Added <span className="font-mono text-[9px] font-bold">{footerEmail}</span> to our clinical dispatch database.
+                    </p>
+                  </div>
+                  <button
+                    onClick={async () => {
+                      const { generatePregnancyGuidePDF } = await import("./lib/pdfGenerator");
+                      generatePregnancyGuidePDF();
+                    }}
+                    className="w-full bg-brand-teal hover:bg-brand-teal/90 text-white text-[10px] font-bold py-2 px-3 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-sm"
+                  >
+                    <Download className="h-3.5 w-3.5" /> Download Branded PDF
+                  </button>
                 </div>
               )}
             </div>

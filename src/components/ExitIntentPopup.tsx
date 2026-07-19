@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X, Mail, Download, BookOpen, Heart, Sparkles, CheckCircle2 } from "lucide-react";
 import { addSubscriber } from "../lib/db";
+import { generatePregnancyGuidePDF } from "../lib/pdfGenerator";
 
 export default function ExitIntentPopup() {
   const [isVisible, setIsVisible] = useState(false);
@@ -64,45 +65,7 @@ export default function ExitIntentPopup() {
   };
 
   const handleDownloadPDF = () => {
-    // Generate a simple high-quality clinical text file simulating the guide
-    const content = `VYTAL BRIDGE CLINICAL STUDY & PREGNANCY CARE TIPS
---------------------------------------------------
-This guide is compiled by the Vytal Bridge Clinical Team (Manzini, Eswatini).
-
-1. Hydration & Vitals
-- Keep hydration levels high. Aim for 2.5 - 3 liters of water daily.
-- Monitor your home blood pressure. Normal readings should be below 120/80 mmHg.
-- If systolic rises above 140 mmHg or diastolic above 90 mmHg, contact your midwife immediately.
-
-2. Nutrition & Micronutrients
-- Prioritize folate-rich foods (spinach, lentils, citrus) and continuous iron supplementation.
-- Avoid raw or unpasteurized foods to prevent listeriosis risks.
-
-3. Telemetry Awareness
-- Continuous vitals logging allows early detection of symptoms before physical signs arise.
-- If enrolled, keep your wearable sync active and close to your mobile bridge node.
-
-4. Red Flag Symptoms (Seek Emergency Care Immediately)
-- Sudden, severe headaches that do not resolve with paracetamol.
-- Visual disturbances (blurring, flashing lights, spots).
-- Sudden swelling of the face, hands, or ankles.
-- Decreased fetal movement (less than 10 movements in a 2-hour window after 28 weeks).
-
-For direct clinical support or pilot enrollment inquiries:
-Web: ${window.location.origin}
-Tel: +268 76585309
-Email: research@vytalbridge.com
-Manzini Medical Centre, Eswatini.
---------------------------------------------------`;
-
-    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", "Vytal_Bridge_Pregnancy_Care_Tips_Guide.txt");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    generatePregnancyGuidePDF();
   };
 
   return (
@@ -215,7 +178,7 @@ Manzini Medical Centre, Eswatini.
                 <div className="bg-brand-dark/20 p-4 rounded-2xl border border-brand-border flex items-center justify-between gap-3 text-left">
                   <div className="min-w-0">
                     <span className="text-[9px] uppercase font-bold text-brand-coral block">Vytal Resource Ready</span>
-                    <p className="text-xs font-bold text-brand-heading truncate">Pregnancy_Care_Tips_Guide.txt</p>
+                    <p className="text-xs font-bold text-brand-heading truncate">Pregnancy_Care_Guide.pdf</p>
                   </div>
                   <button
                     onClick={handleDownloadPDF}
