@@ -15,9 +15,47 @@ export default function BigLogoHero() {
     <div className="relative min-h-[92vh] flex flex-col justify-center items-center overflow-hidden bg-brand-dark border-b border-brand-border px-4 py-12 md:py-20" id="big-logo-entrance-hero">
       
       {/* Immersive artistic glowing backdrops utilizing light shades of translucent pink and teal */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-brand-pink/20 rounded-full filter blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[500px] h-[500px] bg-brand-light-pink/40 rounded-full filter blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-teal/5 rounded-full filter blur-[140px] pointer-events-none" />
+      <motion.div
+        className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-brand-pink/25 rounded-full filter blur-[100px] pointer-events-none"
+        animate={{
+          scale: [1, 1.15, 0.95, 1],
+          x: [0, 35, -25, 0],
+          y: [0, -30, 45, 0]
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <motion.div
+        className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[500px] h-[500px] bg-brand-pink/15 rounded-full filter blur-[120px] pointer-events-none"
+        animate={{
+          scale: [1, 0.9, 1.12, 1],
+          x: [0, -45, 25, 0],
+          y: [0, 35, -35, 0]
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2
+        }}
+      />
+      <motion.div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-teal/10 rounded-full filter blur-[140px] pointer-events-none"
+        animate={{
+          scale: [0.95, 1.05, 1, 0.95],
+          x: [0, 25, -25, 0],
+          y: [0, -25, 25, 0]
+        }}
+        transition={{
+          duration: 22,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 4
+        }}
+      />
 
       {/* Floating Creative Motion Icons in the margins */}
       

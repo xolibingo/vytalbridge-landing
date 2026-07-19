@@ -15,29 +15,37 @@ export default function InteractiveLogo({ size = "md", withText = false }: Inter
     <div className="flex flex-col items-center md:items-start md:flex-row gap-4 sm:gap-6">
       {/* Brand Icon */}
       <motion.div
-        className={`relative ${containerSize} rounded-[28px] bg-brand-seafoam flex items-center justify-center shadow-lg shadow-brand-seafoam/20 overflow-hidden cursor-pointer`}
+        className={`relative ${containerSize} flex items-center justify-center shadow-xl shadow-teal-900/10 overflow-hidden cursor-pointer`}
+        style={{ 
+          borderRadius: "26%", 
+          background: "linear-gradient(135deg, #1fa295 0%, #116358 100%)" 
+        }}
         whileHover={{ scale: 1.05, rotate: 1 }}
         transition={{ type: "spring", stiffness: 300, damping: 15 }}
         id="vytal-bridge-icon"
       >
-        {/* Abstract subtle waves behind */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-teal-700/20 to-transparent pointer-events-none" />
+        {/* Abstract subtle inner radial gloss glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.15)_0%,transparent_70%)] pointer-events-none" />
 
         <svg
           viewBox="0 0 160 160"
-          className="w-4/5 h-4/5"
+          className="w-[85%] h-[85%]"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* Subtle horizontal grid lines */}
-          <line x1="10" y1="95" x2="150" y2="95" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-          <line x1="10" y1="105" x2="150" y2="105" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+          {/* Subtle horizontal base guidelines from reference image */}
+          <line x1="24" y1="100" x2="136" y2="100" stroke="rgba(255,255,255,0.24)" strokeWidth="3.5" strokeLinecap="round" />
+          <line x1="26" y1="105" x2="134" y2="105" stroke="rgba(255,255,255,0.14)" strokeWidth="1.5" strokeLinecap="round" />
 
-          {/* Core Pulse Bridge wave */}
+          {/* Flanking vertical rounded guidelines from reference image */}
+          <line x1="68" y1="78" x2="68" y2="104" stroke="rgba(255,255,255,0.24)" strokeWidth="3.5" strokeLinecap="round" />
+          <line x1="92" y1="78" x2="92" y2="104" stroke="rgba(255,255,255,0.24)" strokeWidth="3.5" strokeLinecap="round" />
+
+          {/* Core Pulse Waveform (Exact symmetric QRS ECG bell curve from reference) */}
           <motion.path
-            d="M 10 95 L 45 95 L 53 80 L 61 110 L 71 95 L 80 50 Q 85 45 90 50 L 99 95 L 109 80 L 117 110 L 125 95 L 150 95"
+            d="M 24 100 L 52 100 L 58 90 L 64 112 C 69 92, 73 54, 80 54 C 87 54, 91 92, 96 112 L 102 90 L 108 100 L 136 100"
             stroke="#FFFFFF"
-            strokeWidth="5"
+            strokeWidth="8"
             strokeLinecap="round"
             strokeLinejoin="round"
             initial={{ pathLength: 0 }}
@@ -45,13 +53,9 @@ export default function InteractiveLogo({ size = "md", withText = false }: Inter
             transition={{ duration: 1.8, ease: "easeInOut" }}
           />
 
-          {/* Bridge side guides (flanking lines) */}
-          <line x1="68" y1="65" x2="68" y2="105" stroke="rgba(255,255,255,0.4)" strokeWidth="2.5" strokeDasharray="3 3" />
-          <line x1="102" y1="65" x2="102" y2="105" stroke="rgba(255,255,255,0.4)" strokeWidth="2.5" strokeDasharray="3 3" />
-
-          {/* Heart on top of the bridge summit */}
+          {/* Plump Coral Heart resting exactly on top of the summit */}
           <motion.g
-            transform="translate(85, 38)"
+            transform="translate(80, 38)"
             animate={{
               scale: [1, 1.15, 1],
             }}
@@ -61,19 +65,16 @@ export default function InteractiveLogo({ size = "md", withText = false }: Inter
               ease: "easeInOut",
             }}
           >
-            {/* Heart Shape */}
             <path
-              d="M 0 -8 C -4 -13, -11 -13, -13 -7 C -15 -2, -10 5, 0 12 C 10 5, 15 -2, 13 -7 C 11 -13, 4 -13, 0 -8"
-              fill="#A98467"
-              stroke="#FFFFFF"
-              strokeWidth="1.5"
+              d="M 0 0 C -4.5 -5, -10 -5, -12 0 C -14 5, -8 11, 0 16 C 8 11, 14 5, 12 0 C 10 -5, 4.5 -5, 0 0"
+              fill="#FF7262"
             />
           </motion.g>
         </svg>
 
         {/* Dynamic scanning glow line */}
         <motion.div
-          className="absolute inset-y-0 w-1 bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none"
+          className="absolute inset-y-0 w-1 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none"
           animate={{ x: ["-100%", "250%"] }}
           transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
         />

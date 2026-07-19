@@ -249,7 +249,7 @@ export async function addDemoRequest(clinicName: string, contactName: string, em
   const subject = "Vytal Bridge Sandbox Demo Request Confirmed 🗓️";
   const body = `Hello ${contactName},\n\nWe have received your institutional sandbox demonstration request for ${clinicName}.\n\nOur advisory board has allocated a sandbox trial node. A specialist will call you at ${phoneNumber} within 24 hours.\n\nWarm regards,\nClinical Trials Coordinator`;
 
-  // 1. Post to actual server-side SMTP dispatcher
+  // 1. Post to actual server-side SMTP dispatcher for the requester
   const emailRes = await sendActualEmail(email.toLowerCase().trim(), subject, body, "newsletter_confirmation");
   const isSmtpSuccess = emailRes && emailRes.mode === "smtp";
 
@@ -261,6 +261,29 @@ export async function addDemoRequest(clinicName: string, contactName: string, em
     type: "newsletter_confirmation",
     timestamp: Timestamp.now(),
     status: isSmtpSuccess ? "delivered" : "dispatched"
+  });
+
+  // 2. Also send notification email to Bingosamu@gmail.com
+  const adminSubject = `🚨 New Demo Request: ${clinicName.trim()}`;
+  const adminBody = `A new clinic dashboard demo request has been submitted on Vytal Bridge.\n\n` +
+    `Details of Request:\n` +
+    `- Clinic Name: ${clinicName.trim()}\n` +
+    `- Contact Person: ${contactName.trim()}\n` +
+    `- Contact Email: ${email.toLowerCase().trim()}\n` +
+    `- Contact Phone: ${phoneNumber.trim()}\n` +
+    `- Integration Notes: ${notes.trim() || "None provided"}\n\n` +
+    `Please follow up with them at your earliest convenience.`;
+
+  const adminEmailRes = await sendActualEmail("Bingosamu@gmail.com", adminSubject, adminBody, "newsletter_confirmation");
+  const isAdminSmtpSuccess = adminEmailRes && adminEmailRes.mode === "smtp";
+
+  await addDoc(collection(db, "sent_emails"), {
+    recipient: "Bingosamu@gmail.com",
+    subject: adminSubject,
+    body: adminBody,
+    type: "newsletter_confirmation",
+    timestamp: Timestamp.now(),
+    status: isAdminSmtpSuccess ? "delivered" : "dispatched"
   });
 
   return docRef.id;

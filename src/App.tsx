@@ -432,6 +432,47 @@ export default function App() {
                   <span>Manzini Medical Centre, Ground Floor<br />Manzini, Eswatini</span>
                 </div>
               </div>
+
+              {/* Social Channels Row */}
+              <div className="pt-3 border-t border-brand-border/40 space-y-2">
+                <span className="text-[10px] text-brand-light-teal uppercase font-bold tracking-wider block">Official Channels</span>
+                <div className="flex items-center gap-3">
+                  {/* WhatsApp */}
+                  <a href="https://whatsapp.com/channel/0029Vb8DnCF6BIEe6WbIDA0E" target="_blank" rel="noopener noreferrer" title="WhatsApp Channel">
+                    <svg className="h-4.5 w-4.5 fill-current text-brand-light-teal hover:text-emerald-500 transition-all hover:scale-110" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12.004 2C6.48 2 2 6.48 2 12.004c0 1.765.46 3.42 1.258 4.876L2 22l5.244-1.222A9.914 9.914 0 0012.004 22c5.522 0 10.002-4.478 10.002-10.002S17.525 2 12.004 2zm0 1.636c4.613 0 8.366 3.753 8.366 8.366s-3.753 8.366-8.366 8.366a8.318 8.318 0 01-4.28-1.17l-.307-.182-3.111.724.737-3.036-.2-.318A8.32 8.32 0 013.638 12c0-4.613 3.753-8.364 8.366-8.364zm-1.848 3.518a.636.636 0 00-.46.216c-.16.177-.61.597-.61 1.455s.624 1.688.71 1.808c.088.12 1.21 1.848 2.937 2.59.412.176.732.282.983.361.414.13.79.112 1.088.068.332-.05.624-.206.81-.412.188-.206.188-.382.188-.432 0-.05-.025-.088-.063-.106l-1.3-.642c-.063-.031-.137-.025-.2.012l-.563.702c-.075.093-.15.1-.263.043-.45-.226-1.025-.563-1.463-.956-.375-.337-.625-.75-.7-.875s-.012-.188.044-.244l.325-.375c.037-.05.05-.113.025-.175L10.743 7.3c-.063-.138-.138-.138-.2-.138-.057-.006-.113-.006-.387-.006z"/>
+                    </svg>
+                  </a>
+                  {/* TikTok */}
+                  <a href="https://vt.tiktok.com/ZSX9XeNjt/" target="_blank" rel="noopener noreferrer" title="TikTok Profile">
+                    <svg className="h-4.5 w-4.5 fill-current text-brand-light-teal hover:text-pink-500 transition-all hover:scale-110" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.63 4.14 1.02.99 2.44 1.53 3.86 1.61v3.86c-1.24-.08-2.47-.46-3.52-1.15-.35-.23-.68-.5-.98-.8v4.94c0 1.94-.49 3.86-1.54 5.39-1.2 1.63-3.13 2.69-5.12 2.89-2.31.18-4.65-.67-6.13-2.45C3.12 16.71 2.38 14.12 2.76 11.54c.39-2.28 1.83-4.32 3.9-5.26 1.41-.6 3-.72 4.51-.43v3.91c-.81-.19-1.68-.08-2.41.34-.84.45-1.42 1.34-1.52 2.29-.14 1.15.35 2.33 1.25 3.01.89.65 2.1.75 3.07.24.7-.35 1.15-1.07 1.2-1.85V.02z"/>
+                    </svg>
+                  </a>
+                  {/* Instagram */}
+                  <a href="https://www.instagram.com/p/Da-eDQOAdL8/?igsh=cW9xaXczYnM0cWV3" target="_blank" rel="noopener noreferrer" title="Instagram Post">
+                    <svg className="h-4.5 w-4.5 fill-none stroke-current text-brand-light-teal hover:text-rose-500 stroke-[2] stroke-linecap-round stroke-linejoin-round transition-all hover:scale-110" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                  </a>
+                  {/* LinkedIn */}
+                  <a href="https://www.linkedin.com/in/vytal-bridge-158a60422/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BMWPjNyvdQ3Wd3OEqTQXL1g%3D%3D" target="_blank" rel="noopener noreferrer" title="LinkedIn Profile">
+                    <svg className="h-4.5 w-4.5 fill-none stroke-current text-brand-light-teal hover:text-blue-600 stroke-[2] stroke-linecap-round stroke-linejoin-round transition-all hover:scale-110" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                      <rect x="2" y="9" width="4" height="12"/>
+                      <circle cx="4" cy="4" r="2"/>
+                    </svg>
+                  </a>
+                  {/* Facebook */}
+                  <a href="https://www.facebook.com/share/1J79uV4atp/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" title="Facebook Page">
+                    <svg className="h-4.5 w-4.5 fill-current text-brand-light-teal hover:text-blue-600 transition-all hover:scale-110" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
             </div>
 
             {/* Legal Disclaimers & Useful Links Column */}

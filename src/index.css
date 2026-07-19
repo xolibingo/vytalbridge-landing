@@ -2,34 +2,34 @@
 @import "tailwindcss";
 
 :root {
-  --bg-dark: #FAF9F6;
-  --bg-dark-card: #FFFFFF;
-  --bg-teal: #4A5D4E;
-  --bg-light-teal: #6B705C;
-  --bg-seafoam: #4A5D4E;
-  --bg-coral: #A98467;
-  --bg-accent-beige: #E9EDC9;
-  --bg-border: #E0DED7;
-  --bg-text: #3D3D33;
-  --bg-heading: #2C332D;
-  --bg-pink: #E8C2BC;
-  --bg-light-pink: #FFF5F3;
+  --bg-dark: #FCF9F6;          /* Linen off-white */
+  --bg-dark-card: #FFFFFF;     /* Crisp clean white panels */
+  --bg-teal: #125E3D;          /* Sophisticated botanical/clinical pine green */
+  --bg-light-teal: #506F5D;    /* Calm sage green for readable subtext */
+  --bg-seafoam: #EBF7EE;       /* Fresh herbal mint background highlights */
+  --bg-coral: #E04D76;         /* Vivid raspberry pink clinical/accent indicators */
+  --bg-accent-beige: #FFEBF0;  /* Soft glow pink highlight surfaces */
+  --bg-border: #E4DFD9;        /* Warm organic border line */
+  --bg-text: #222C26;          /* Dark forest-pine charcoal text for pure legibility */
+  --bg-heading: #0A2F1D;       /* Deep obsidian green for medical-authority titles */
+  --bg-pink: #F49EB2;          /* Rich rose-blossom pink highlight */
+  --bg-light-pink: #FFF2F5;    /* Super-soft translucent blossom background */
 }
 
-/* High-contrast Clinical Dark theme for healthcare/night settings */
+/* High-contrast Clinical Dark theme with glowing medical neon mint-green & hot pink */
 [data-theme="clinical-dark"] {
-  --bg-dark: #0A0D10;          /* Deep monitor pitch-black background */
-  --bg-dark-card: #12181F;     /* Hospital UI panel/card slate */
-  --bg-teal: #0D9488;          /* High contrast clinical emerald/cyan */
-  --bg-light-teal: #94A3B8;    /* readable light slate gray */
-  --bg-seafoam: #14B8A6;       /* Bright medical telemetry seafoam */
-  --bg-coral: #F43F5E;         /* Sharp signal pink/red indicator */
-  --bg-accent-beige: #1E293B;  /* Deep navy-slate control backgrounds */
-  --bg-border: #2D3748;        /* Hospital grid high contrast border */
-  --bg-text: #F8FAFC;          /* Clean hospital white text */
-  --bg-heading: #FFFFFF;       /* Pure white titles */
-  --bg-pink: #38BDF8;          /* Neon telemetry sky blue */
-  --bg-light-pink: #1E293B;    /* High-contrast panel highlight */
+  --bg-dark: #070F0B;          /* Deep cyber obsidian-pine space */
+  --bg-dark-card: #0D1D14;     /* Immersive jade-pine medical console cards */
+  --bg-teal: #10B981;          /* High-intensity glowing mint-green telemetry */
+  --bg-light-teal: #A2C4B1;    /* Readable high-contrast sage/mint gray text */
+  --bg-seafoam: #059669;       /* Deep energetic clinical green indicators */
+  --bg-coral: #EC4899;         /* High-visibility glowing hot pink signal alerts */
+  --bg-accent-beige: #122B1E;  /* Medical radar dark green console panel */
+  --bg-border: #1B3627;        /* Jade-obsidian grid lines */
+  --bg-text: #E6F4ED;          /* Bright clean medical-white text */
+  --bg-heading: #FFFFFF;       /* Pure radiant white for titles */
+  --bg-pink: #F472B6;          /* Electric telemetry neon pink */
+  --bg-light-pink: #24131B;    /* Translucent dark-magenta scan lines overlay */
 }
 
 @theme {

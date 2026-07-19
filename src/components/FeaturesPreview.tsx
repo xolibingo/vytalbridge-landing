@@ -174,29 +174,32 @@ export default function FeaturesPreview() {
                 {currentFeature.visualMockup === "monitoring" && (
                   <div className="space-y-3" id="mockup-monitoring">
                     <div className="flex justify-between items-center text-xs text-brand-light-teal border-b border-brand-border pb-2">
-                      <span className="flex items-center gap-1.5"><FileHeart className="h-3.5 w-3.5 text-brand-teal animate-pulse" /> Active Session</span>
-                      <span className="text-brand-teal font-semibold">98% Signal Quality</span>
+                      <span className="flex items-center gap-1.5"><FileHeart className="h-3.5 w-3.5 text-brand-coral animate-pulse" /> Live Telemetry</span>
+                      <span className="text-brand-teal font-semibold font-mono text-[10px]">98% Signal Quality</span>
                     </div>
                     <div className="grid grid-cols-2 gap-3">
-                      <div className="bg-brand-dark p-2.5 rounded-lg border border-brand-border">
-                        <span className="text-[10px] text-brand-light-teal uppercase font-semibold">Baby Heartbeat</span>
-                        <div className="flex items-baseline gap-1 mt-1 text-brand-heading">
-                          <span className="text-lg font-bold font-mono">142</span>
-                          <span className="text-[10px] text-brand-light-teal">BPM</span>
+                      <div className="bg-brand-dark p-2 rounded-lg border border-brand-border">
+                        <span className="text-[9px] text-brand-light-teal uppercase font-bold tracking-wider">Fetal Heartbeat</span>
+                        <div className="flex items-baseline gap-1 mt-0.5 text-brand-heading">
+                          <span className="text-base font-bold font-mono text-brand-teal">142</span>
+                          <span className="text-[9px] text-brand-light-teal">BPM</span>
                         </div>
                       </div>
-                      <div className="bg-brand-dark p-2.5 rounded-lg border border-brand-border">
-                        <span className="text-[10px] text-brand-light-teal uppercase font-semibold">Maternal BP</span>
-                        <div className="flex items-baseline gap-1 mt-1 text-brand-heading">
-                          <span className="text-lg font-bold font-mono">118/76</span>
-                          <span className="text-[10px] text-brand-light-teal">mmHg</span>
+                      <div className="bg-brand-dark p-2 rounded-lg border border-brand-border">
+                        <span className="text-[9px] text-brand-light-teal uppercase font-bold tracking-wider">Maternal BP</span>
+                        <div className="flex items-baseline gap-1 mt-0.5 text-brand-heading">
+                          <span className="text-base font-bold font-mono text-brand-coral">118/76</span>
+                          <span className="text-[9px] text-brand-light-teal">mmHg</span>
                         </div>
                       </div>
                     </div>
-                    {/* Animated rhythm line */}
-                    <div className="h-6 w-full opacity-60 relative flex items-center justify-center">
-                      <svg className="w-full h-full stroke-brand-teal" viewBox="0 0 100 20" fill="none">
-                        <path d="M0 10 L30 10 L34 4 L38 16 L42 10 L60 10 L64 0 L68 20 L72 10 L100 10" strokeWidth="2" strokeLinecap="round" />
+                    {/* Animated rhythm line (Dual Waveform representing pink and green) */}
+                    <div className="h-8 w-full opacity-90 relative flex items-center justify-between">
+                      <svg className="w-1/2 h-full stroke-brand-teal" viewBox="0 0 100 20" fill="none">
+                        <path d="M0 10 L25 10 L28 4 L31 16 L34 10 L50 10 L54 0 L58 20 L62 10 L100 10" strokeWidth="2" strokeLinecap="round" />
+                      </svg>
+                      <svg className="w-1/2 h-full stroke-brand-coral" viewBox="0 0 100 20" fill="none">
+                        <path d="M0 10 L15 10 L20 6 L25 14 L30 10 L60 10 L65 2 L70 18 L75 10 L100 10" strokeWidth="2" strokeLinecap="round" />
                       </svg>
                     </div>
                   </div>
@@ -205,19 +208,19 @@ export default function FeaturesPreview() {
                 {currentFeature.visualMockup === "alerting" && (
                   <div className="space-y-3" id="mockup-alerting">
                     <div className="flex justify-between items-center text-xs text-brand-light-teal border-b border-brand-border pb-2">
-                      <span className="text-brand-coral font-semibold flex items-center gap-1.5"><ShieldAlert className="h-3.5 w-3.5 animate-bounce" /> Emergency Guard</span>
-                      <span className="text-brand-light-teal font-semibold">Live Router</span>
+                      <span className="text-brand-coral font-bold flex items-center gap-1.5"><ShieldAlert className="h-3.5 w-3.5 animate-bounce" /> Emergency Guard</span>
+                      <span className="text-brand-light-teal font-semibold text-[10px]">Live Router Active</span>
                     </div>
-                    <div className="bg-brand-coral/10 border border-brand-coral/20 rounded-lg p-3 text-xs flex gap-3 items-start">
+                    <div className="bg-brand-coral/10 border border-brand-coral/20 rounded-lg p-2.5 text-[11px] flex gap-2 items-start">
                       <div className="h-2 w-2 rounded-full bg-brand-coral mt-1.5 animate-ping flex-shrink-0" />
-                      <div className="space-y-1">
-                        <p className="font-semibold text-brand-coral">Critical Elevation Detected</p>
-                        <p className="text-brand-text text-[11px]">Systolic blood pressure exceeded safe target. Secure telemetry routed instantly to Dr. Sarah Jenkins.</p>
+                      <div className="space-y-0.5">
+                        <p className="font-bold text-brand-coral">Critical Threshold Flagged</p>
+                        <p className="text-brand-text leading-tight text-[10px]">Systolic blood pressure trends exceeded personalized targets. Direct alert tunnels routed to Dr. Jenkins.</p>
                       </div>
                     </div>
-                    <div className="flex items-center justify-between text-[11px] text-brand-light-teal px-1 bg-brand-dark p-1.5 rounded-md border border-brand-border">
-                      <span>Routing Status:</span>
-                      <span className="text-emerald-700 font-semibold flex items-center gap-1"><CheckCircle2 className="h-3 w-3" /> Transmitted</span>
+                    <div className="flex items-center justify-between text-[10px] text-brand-light-teal px-1 bg-brand-dark p-1.5 rounded-md border border-brand-border">
+                      <span>Telemetry Status:</span>
+                      <span className="text-brand-teal font-bold flex items-center gap-1"><CheckCircle2 className="h-3 w-3" /> SECURE TUNNEL OK</span>
                     </div>
                   </div>
                 )}
@@ -225,19 +228,19 @@ export default function FeaturesPreview() {
                 {currentFeature.visualMockup === "contraction" && (
                   <div className="space-y-3" id="mockup-contraction">
                     <div className="flex justify-between items-center text-xs text-brand-light-teal border-b border-brand-border pb-2">
-                      <span className="flex items-center gap-1.5"><Activity className="h-3.5 w-3.5 text-brand-teal" /> Interval Log</span>
-                      <span className="text-brand-light-teal font-mono">4m 12s average</span>
+                      <span className="flex items-center gap-1.5 text-brand-teal font-semibold"><Activity className="h-3.5 w-3.5" /> Interval Analysis</span>
+                      <span className="text-brand-light-teal font-mono text-[10px]">4m 12s average</span>
                     </div>
-                    <div className="space-y-1.5">
-                      <div className="flex justify-between items-center text-[11px]">
-                        <span className="text-brand-light-teal">Current Phase:</span>
-                        <span className="text-brand-teal font-semibold">Active Labor Transition</span>
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center text-[10px]">
+                        <span className="text-brand-light-teal">Contraction Phase:</span>
+                        <span className="text-brand-coral font-bold">Transition State</span>
                       </div>
                       <div className="w-full bg-brand-dark border border-brand-border h-2.5 rounded-full overflow-hidden">
-                        <div className="bg-brand-teal h-full w-4/6" />
+                        <div className="bg-gradient-to-r from-brand-teal to-brand-coral h-full w-4/6" />
                       </div>
-                      <p className="text-[10px] text-brand-coral leading-tight bg-brand-coral/5 p-1.5 rounded border border-brand-coral/10">
-                        Recommendation: Contractual cycle is stabilizing below 5 minutes. Prepare to contact your birth partner.
+                      <p className="text-[9px] text-brand-light-teal leading-tight bg-brand-teal/5 p-1.5 rounded border border-brand-teal/20">
+                        <strong className="text-brand-heading">Advisory:</strong> Cycle is stabilizing. Prepare transport procedures to nearest birth facility.
                       </p>
                     </div>
                   </div>
@@ -246,14 +249,14 @@ export default function FeaturesPreview() {
                 {currentFeature.visualMockup === "advisory" && (
                   <div className="space-y-3" id="mockup-advisory">
                     <div className="flex justify-between items-center text-xs text-brand-light-teal border-b border-brand-border pb-2">
-                      <span className="flex items-center gap-1.5 text-brand-coral font-semibold"><Sparkles className="h-3.5 w-3.5" /> Week 32 - Smart Path</span>
-                      <span className="text-brand-light-teal font-semibold">Maternal-Fetal Care</span>
+                      <span className="flex items-center gap-1.5 text-brand-coral font-semibold"><Sparkles className="h-3.5 w-3.5 text-brand-coral" /> Week 32 Guidance</span>
+                      <span className="text-brand-light-teal font-semibold text-[10px]">Board Certified</span>
                     </div>
                     <div className="flex gap-2.5 items-start">
-                      <div className="h-8 w-8 rounded-full bg-brand-teal/20 text-brand-teal flex items-center justify-center text-xs font-bold flex-shrink-0 border border-brand-teal/10">32w</div>
+                      <div className="h-8 w-8 rounded-full bg-brand-pink/20 text-brand-coral flex items-center justify-center text-xs font-bold flex-shrink-0 border border-brand-pink/30">32w</div>
                       <div className="space-y-0.5">
-                        <p className="text-xs font-semibold text-brand-heading">Daily Wellness Guideline</p>
-                        <p className="text-[11px] text-brand-text leading-normal">Your baby is about the size of a squash. To buffer blood volume increases, increase hydration to 3.2L today and log rest periods.</p>
+                        <p className="text-xs font-bold text-brand-heading">Maternal Hydration Guide</p>
+                        <p className="text-[10px] text-brand-text leading-normal">Your baby is sizing like a squash. To buffer continuous blood volume expansion, target 3.2L of water today and record symptom responses.</p>
                       </div>
                     </div>
                   </div>
