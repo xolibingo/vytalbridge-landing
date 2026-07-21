@@ -288,3 +288,33 @@ export async function addDemoRequest(clinicName: string, contactName: string, em
 
   return docRef.id;
 }
+
+export interface FirestoreSurveyResponse {
+  id?: string;
+  email?: string;
+  role: string;
+  priorityTopic: string;
+  feedbackText: string;
+  timestamp: any;
+}
+
+export async function addSurveyResponse(email: string, role: string, priorityTopic: string, feedbackText: string) {
+  const surveyData = {
+    email: email.trim().toLowerCase() || "anonymous@vytalbridge.com",
+    role: role.trim() || "Community Member",
+    priorityTopic: priorityTopic.trim() || "Maternal Vitals",
+    feedbackText: feedbackText.trim(),
+    timestamp: Timestamp.now()
+  };
+
+  const docRef = await addDoc(collection(db, "survey_responses"), surveyData);
+
+  if (email.trim()) {
+    const subject = "Thank You for Completing the Vytal Bridge Maternal Care Survey 📋";
+    const body = `Hello,\n\nThank you for completing our maternal care feedback survey.\n\nYour inputs will help us refine our clinical telemetry and midwife support platforms across Eswatini.\n\nWarm regards,\nVytal Bridge Research Division`;
+    
+    await sendActualEmail(email.trim().toLowerCase(), subject, body, "newsletter_confirmation");
+  }
+
+  return docRef.id;
+}

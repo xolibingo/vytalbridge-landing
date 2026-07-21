@@ -531,7 +531,7 @@ export default function App() {
       {/* Floating Clinical Support Chat Interface */}
       <SupportChat />
 
-      {/* Non-intrusive Exit-Intent resource offer popup */}
+      {/* Non-intrusive Exit-Intent maternal survey popup */}
       <ExitIntentPopup />
 
     </div>
